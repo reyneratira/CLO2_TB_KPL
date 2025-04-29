@@ -1,0 +1,15 @@
+C:\Users\alvin\CLO2_TB_KPL\Modul_Simulasi_AlvinBagusF\SimulasiProsesLayanan\SimulasiProsesLayanan\bin\Debug\net8.0\SimulasiProsesLayanan.exe
+C:\Users\alvin\CLO2_TB_KPL\Modul_Simulasi_AlvinBagusF\SimulasiProsesLayanan\SimulasiProsesLayanan\bin\Debug\net8.0\SimulasiProsesLayanan.deps.json
+C:\Users\alvin\CLO2_TB_KPL\Modul_Simulasi_AlvinBagusF\SimulasiProsesLayanan\SimulasiProsesLayanan\bin\Debug\net8.0\SimulasiProsesLayanan.runtimeconfig.json
+C:\Users\alvin\CLO2_TB_KPL\Modul_Simulasi_AlvinBagusF\SimulasiProsesLayanan\SimulasiProsesLayanan\bin\Debug\net8.0\SimulasiProsesLayanan.dll
+C:\Users\alvin\CLO2_TB_KPL\Modul_Simulasi_AlvinBagusF\SimulasiProsesLayanan\SimulasiProsesLayanan\bin\Debug\net8.0\SimulasiProsesLayanan.pdb
+C:\Users\alvin\CLO2_TB_KPL\Modul_Simulasi_AlvinBagusF\SimulasiProsesLayanan\SimulasiProsesLayanan\obj\Debug\net8.0\SimulasiProsesLayanan.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alvin\CLO2_TB_KPL\Modul_Simulasi_AlvinBagusF\SimulasiProsesLayanan\SimulasiProsesLayanan\obj\Debug\net8.0\SimulasiProsesLayanan.AssemblyInfoInputs.cache
+C:\Users\alvin\CLO2_TB_KPL\Modul_Simulasi_AlvinBagusF\SimulasiProsesLayanan\SimulasiProsesLayanan\obj\Debug\net8.0\SimulasiProsesLayanan.AssemblyInfo.cs
+C:\Users\alvin\CLO2_TB_KPL\Modul_Simulasi_AlvinBagusF\SimulasiProsesLayanan\SimulasiProsesLayanan\obj\Debug\net8.0\SimulasiProsesLayanan.csproj.CoreCompileInputs.cache
+C:\Users\alvin\CLO2_TB_KPL\Modul_Simulasi_AlvinBagusF\SimulasiProsesLayanan\SimulasiProsesLayanan\obj\Debug\net8.0\SimulasiProsesLayanan.sourcelink.json
+C:\Users\alvin\CLO2_TB_KPL\Modul_Simulasi_AlvinBagusF\SimulasiProsesLayanan\SimulasiProsesLayanan\obj\Debug\net8.0\SimulasiProsesLayanan.dll
+C:\Users\alvin\CLO2_TB_KPL\Modul_Simulasi_AlvinBagusF\SimulasiProsesLayanan\SimulasiProsesLayanan\obj\Debug\net8.0\refint\SimulasiProsesLayanan.dll
+C:\Users\alvin\CLO2_TB_KPL\Modul_Simulasi_AlvinBagusF\SimulasiProsesLayanan\SimulasiProsesLayanan\obj\Debug\net8.0\SimulasiProsesLayanan.pdb
+C:\Users\alvin\CLO2_TB_KPL\Modul_Simulasi_AlvinBagusF\SimulasiProsesLayanan\SimulasiProsesLayanan\obj\Debug\net8.0\SimulasiProsesLayanan.genruntimeconfig.cache
+C:\Users\alvin\CLO2_TB_KPL\Modul_Simulasi_AlvinBagusF\SimulasiProsesLayanan\SimulasiProsesLayanan\obj\Debug\net8.0\ref\SimulasiProsesLayanan.dll
