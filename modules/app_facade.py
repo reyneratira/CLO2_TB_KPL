@@ -1,3 +1,4 @@
+from modules.utils import print_error
 from modules.queue_manager import QueueManager
 from modules.config_loader import load_services
 from modules.registration import create_valid_customer_data, services_code_validation
@@ -14,7 +15,7 @@ class AppFacade:
         print("=====================================")
     
     # Application Facade for Service Queue Simulation
-    def __init__(self, config_path='config/services.json'):
+    def __init__(self, config_path='config/services.json', queue=None, sim=None):
         self.services = load_services(config_path)
         self.qm = QueueManager(self.services)
         self.simulator = ServiceSimulator(NormalService())
@@ -44,7 +45,7 @@ class AppFacade:
             else:
                 raise ValueError("Data pelanggan tidak valid")
         except ValueError as e:
-            print(f"Error: {e}\n")
+            print_error(e)
 
     # Add a customer to the queue
     def add_customer(self, service_code, customer_name):

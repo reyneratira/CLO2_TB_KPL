@@ -1,4 +1,5 @@
 from modules.app_facade import AppFacade
+from modules.utils import print_error
 
 def main():
     # Initialize the application facade
@@ -24,7 +25,7 @@ def main():
                 app.serve_next_customer()
                 print("Pelanggan telah dilayani.")
             except IndexError as e:
-                print(f"Error: {e}")
+                print_error(e)
 
         elif choice == '4':
             print("Pilih mode simulasi:")
@@ -41,7 +42,7 @@ def main():
                 else:
                     raise ValueError("Pilihan tidak valid. Harap masukkan 1 atau 2.")
             except ValueError as e:
-                print(f"Error: {e}")
+                print_error(e)
 
         elif choice == '5':
             print("Terima kasih telah menggunakan aplikasi simulasi antrian layanan.")
