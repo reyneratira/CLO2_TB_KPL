@@ -1,23 +1,23 @@
 from modules.app_facade import AppFacade
 from modules.utils import print_error
 
-def main():
+def main() -> None:
     # Initialize the application facade
-    app = AppFacade()
+    app: AppFacade = AppFacade()
 
     while True:
         AppFacade.show_menu()
-        choice = input("Pilih menu (1-5): ").strip()
+        choice: str = input("Pilih menu (1-5): ").strip()
 
         if choice == '1':
             app.handle_add_customer()
             
         elif choice == '2':
-            queue = app.get_queue()
+            queue: list[dict[str, str]] = app.get_queue()
             if not queue:
                 print("Antrian kosong.")
             else:
-                for i, customer in enumerate(queue,1):
+                for i, customer in enumerate(queue, 1):
                     print(f"{i}. {customer['name']} - Kode Layanan: {customer['service_code']}")
 
         elif choice == '3':
@@ -31,7 +31,7 @@ def main():
             print("Pilih mode simulasi:")
             print("1. Normal")
             print("2. Fast")
-            mode = input("Masukkan pilihan (1-2): ").strip()
+            mode: str = input("Masukkan pilihan (1-2): ").strip()
             try:
                 if mode == '1':
                     app.set_simulation_mode('normal')

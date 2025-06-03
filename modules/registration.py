@@ -1,10 +1,11 @@
-import re 
+import re
+from typing import Dict
 
-def services_code_validation(code):
-    pattern = r'^L[0-9]{2}$'
+def services_code_validation(code: str) -> bool:
+    pattern: str = r'^L[0-9]{2}$'
     return bool(re.match(pattern, code))
 
-def create_valid_customer_data(name, services_code):
+def create_valid_customer_data(name: str, services_code: str) -> Dict[str, str]:
     if not name:
         raise ValueError("Nama tidak boleh kosong")
     if not services_code_validation(services_code):
@@ -14,6 +15,3 @@ def create_valid_customer_data(name, services_code):
         'name': name,
         'services_code': services_code
     }
-
-
-
