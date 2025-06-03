@@ -1,9 +1,9 @@
 from collections import deque
 
-class queue_manager:
-    def __init__(self, services_data):
+class QueueManager:
+    def __init__(self, services_mapping):
         self.queue = deque()
-        self.service_time_mapping = services_data
+        self.service_time_mapping = services_mapping
     
     def add_to_queue(self, service_code, customer_name):
         if not customer_name:

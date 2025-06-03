@@ -30,5 +30,5 @@ class ServiceSimulator:
     def set_strategy(self, strategy: ServiceStrategy):
         self.strategy = strategy
 
-    def run(self, customer, service_name, duration_minutes):
+    def simulate_service(self, customer, service_name, duration_minutes):
         self.strategy.simulate(customer, service_name, duration_minutes)
