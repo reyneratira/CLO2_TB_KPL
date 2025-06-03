@@ -1,95 +1,64 @@
-from modules.queue_manager import queue_manager
-from modules.config_loader import load_services
-from modules.registration import defensive_code
-from modules.simulator import (
-    ServiceSimulator,
-    NormalService,
-    FastService
-)
-
-def show_menu():
-    print("\n===== SIMULASI ANTRIAN LAYANAN =====")
-    print("1. Tambah Pelanggan ke Antrian")
-    print("2. Tampilkan Antrian")
-    print("3. Layani Pelanggan")
-    print("4. Ganti Strategi Layanan (Normal/Fast)")
-    print("5. Keluar")
-
-def show_queue(qm):
-    if qm.is_empty():
-        print("Antrian kosong.")
-    else:
-        print("Antrian saat ini:")
-        for idx, customer in enumerate(qm.queue, start=1):
-            print(f"{idx}. {customer['name']} - {customer['service_code']}")
+from modules.app_facade import AppFacade
 
 def main():
-    services = load_services('config/services.json')
-    qm = queue_manager(services)
-
-    # Inisialisasi simulator dengan strategi layanan normal
-    simulator = ServiceSimulator(NormalService())
+    # Initialize the application facade
+    app = AppFacade()
 
     while True:
-        show_menu()
-        choice = input("Pilih menu (1-4): ")
+        AppFacade.show_menu()
+        choice = input("Pilih menu (1-5): ").strip()
 
         if choice == '1':
             try:
                 name = input("Masukkan nama pelanggan: ").strip()
+                print("Daftar layanan:")
+                for service in app.list_services():
+                    print(f"{service['code']}: {service['name']} - {service['duration']} menit")
                 
-                if not name:
-                    raise ValueError("Nama tidak boleh kosong")
-                
-                print("Daftar kode layanan yang tersedia:")
-                for code, info in services.items():
-                    print(f"{code}: {info['name']} ({info['duration']} menit)")
-
-                code = input("Masukkan kode layanan (format LXX): ").strip().upper()
-
-                # Validasi nama + kode sekaligus (defensive_code)
-                customer = defensive_code(name, code)
-
-                # Pastikan kode layanan ada di config
-                if code not in services:
-                    raise ValueError("Kode layanan tidak ditemukan dalam daftar layanan")
-
-                qm.add_to_queue(customer['services_code'], customer['name'])
-                print("Pelanggan berhasil ditambahkan ke antrian.")
+                code = input("Masukkan kode layanan (LXX): ").strip()
+                app.add_customer(name, code)
+                print(f"Pelanggan {name} dengan kode layanan {code} telah ditambahkan ke antrian.")
             except ValueError as e:
                 print(f"Error: {e}")
-
+            
         elif choice == '2':
-            show_queue(qm)
+            queue = app.get_queue()
+            if not queue:
+                print("Antrian kosong.")
+            else:
+                for i, customer in enumerate(queue,1):
+                    print(f"{i}. {customer['name']} - Kode Layanan: {customer['service_code']}")
 
         elif choice == '3':
             try:
-                customer = qm.get_next_customer()
-                service_name = qm.get_service_name(customer['service_code'])
-                duration_minutes = qm.get_service_time(customer['service_code'])
-                simulator.run(customer, service_name, duration_minutes)
-                
+                app.serve_next_customer()
+                print("Pelanggan telah dilayani.")
             except IndexError as e:
                 print(f"Error: {e}")
 
         elif choice == '4':
-            print("Pilih strategi layanan:")
-            print("1. Normal Service")
-            print("2. Fast Service")
-            strategy_choice = input("Pilih (1/2): ")
-            if strategy_choice == '1':
-                simulator.set_strategy(NormalService())
-                print("Strategi layanan diubah ke Normal Service.")
-            elif strategy_choice == '2':
-                simulator.set_strategy(FastService())
-                print("Strategi layanan diubah ke Fast Service.")
-            else:
-                print("Pilihan tidak valid.")
+            print("Pilih mode simulasi:")
+            print("1. Normal")
+            print("2. Fast")
+            mode = input("Masukkan pilihan (1-2): ").strip()
+            try:
+                if mode == '1':
+                    app.set_simulation_mode('normal')
+                    print("Mode simulasi diatur ke Normal.")
+                elif mode == '2':
+                    app.set_simulation_mode('fast')
+                    print("Mode simulasi diatur ke Fast.")
+                else:
+                    raise ValueError("Pilihan tidak valid. Harap masukkan 1 atau 2.")
+            except ValueError as e:
+                print(f"Error: {e}")
+
         elif choice == '5':
-            print("Terima kasih telah menggunakan aplikasi.")
+            print("Terima kasih telah menggunakan aplikasi simulasi antrian layanan.")
             break
         else:
-            print("Pilihan tidak valid.")
+            print("Pilihan tidak valid. Harap masukkan angka antara 1-5.")
 
+# Main entry point for the application
 if __name__ == "__main__":
     main()
