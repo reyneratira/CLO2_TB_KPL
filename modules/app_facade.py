@@ -22,15 +22,33 @@ class AppFacade:
     # List available services
     def list_services(self):
         return self.services
+    
+    def handle_add_customer(self):
+        name = input("Masukkan nama pelanggan: ").strip()
+        if not name:
+            raise ValueError("Nama tidak boleh kosong")
 
-    # Add a customer to the queue with validation
-    def add_customer(self, name, code):
-        if not services_code_validation(code):
-            raise ValueError("Kode layanan harus dalam format LXX")
-        customer = create_valid_customer_data(name, code)
-        if code not in self.services:
-            raise ValueError("Kode layanan tidak tersedia")
-        self.qm.add_to_queue(code, name)
+        print("Kode layanan tersedia:")
+        for code, data in self.list_services().items():
+            print(f"{code}: {data['name']} (Estimasi waktu: {data['duration']} menit)")
+        
+        services_code = input("Masukkan kode layanan (misal: L01): ").strip().upper()
+    
+        try:
+            # Validate data input using the registration module
+            customer = create_valid_customer_data(name, services_code)
+            if customer:
+                # Setelah lolos validasi, input diproses
+                self.add_customer(customer['services_code'], customer['name'])
+                print("Pelanggan berhasil ditambahkan ke antrian.\n")
+            else:
+                raise ValueError("Data pelanggan tidak valid")
+        except ValueError as e:
+            print(f"Error: {e}\n")
+
+    # Add a customer to the queue
+    def add_customer(self, service_code, customer_name):
+        self.qm.add_to_queue(service_code, customer_name)
 
     # Get the current queue of customers
     def get_queue(self):

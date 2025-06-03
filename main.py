@@ -9,17 +9,7 @@ def main():
         choice = input("Pilih menu (1-5): ").strip()
 
         if choice == '1':
-            try:
-                name = input("Masukkan nama pelanggan: ").strip()
-                print("Daftar layanan:")
-                for service in app.list_services():
-                    print(f"{service['code']}: {service['name']} - {service['duration']} menit")
-                
-                code = input("Masukkan kode layanan (LXX): ").strip()
-                app.add_customer(name, code)
-                print(f"Pelanggan {name} dengan kode layanan {code} telah ditambahkan ke antrian.")
-            except ValueError as e:
-                print(f"Error: {e}")
+            app.handle_add_customer()
             
         elif choice == '2':
             queue = app.get_queue()
