@@ -4,6 +4,15 @@ from modules.registration import defensive_code, validation_code
 from modules.simulator import ServiceSimulator, NormalService, FastService
 
 class AppFacade:
+    def show_menu():
+        print("\n===== SIMULASI ANTRIAN LAYANAN =====")
+        print("1. Tambah Pelanggan ke Antrian")
+        print("2. Tampilkan Antrian")
+        print("3. Layani Pelanggan")
+        print("4. Ganti Mode Simulasi")
+        print("5. Keluar")
+        print("=====================================")
+        
     def __init__(self, config_path='config/services.json'):
         self.services = load_services(config_path)
         self.qm = queue_manager(self.services)
