@@ -22,4 +22,14 @@ Aplikasi CLI berbasis Python untuk menyimulasikan antrian layanan seperti bank a
 python -m unittest discover tests 
 
 #menjalankan test spesifik
-python -m unittest tests.test_queue #contoh jika ingin menjalankan test_queue.py 
+python -m unittest tests.test_queue #contoh jika ingin menjalankan test_queue.py
+
+# CLO4_TB_KPL - Design Pattern and Clean Code Implementation
+
+## Deskripsi
+Pengimplementasian Design Pattern dan Clean Code ke dalam codebase dalam rangka memenuhi tugas besar CLO4 mata perkuliahan Konstruksi Perangkat Lunak
+
+## Hasil Implementasi
+- Strategy Pattern dalam modules/simulator.py
+- Facade Pattern dalam modules/app_facade.py
+- Implementasi prinsip clean code seperti python naming convention, dan type hinting
