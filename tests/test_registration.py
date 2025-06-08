@@ -11,7 +11,7 @@ class TestRegistration(unittest.TestCase):
     def test_register_success(self):
         customer = create_valid_customer_data("Budi", "L02")
         self.assertEqual(customer['name'], "Budi")
-        self.assertEqual(customer['service_code'], "L02")
+        self.assertEqual(customer['services_code'], "L02")
 
     def test_register_empty_name(self):
         with self.assertRaises(ValueError):

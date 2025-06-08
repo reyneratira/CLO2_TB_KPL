@@ -108,3 +108,8 @@ Pipfile.lock
 
 # Windows
 Thumbs.db
+
+# Profiler output
+*.prof
+*.dat
+memory_profile.png
