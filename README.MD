@@ -25,11 +25,52 @@ Pengimplementasian Design Pattern dan Clean Code ke dalam codebase dalam rangka 
 - Strategy Pattern dalam modules/simulator.py
 - Facade Pattern dalam modules/app_facade.py
 - Implementasi prinsip clean code seperti python naming convention, dan type hinting
+- Unittest dengan Coverage, dan Memory Profiling
+
+## Cara Menjalankan Aplikasi
+
+### - Membuat virtual environment (dianjurkan)
+```bash
+python -m venv nama-venv
+```
+### - Aktifkan virtual environment (jika membuat)
+```bash
+# Jika memakai CMD
+nama-venv\Scripts\activate
+
+# Jika memakai powershell
+nama-venv\Scripts\Activate.ps1
+```
+
+### - Instal package dependency
+```bash
+pip install -r requirements.txt
+```
+### - Run main
+```bash
+python main.py
+```
 
 ## Cara Menjalankan Test
 ```bash
 #untuk menjalankan semua tests secara bersamaan
 python -m unittest discover tests 
-
+```
+```bash
 #menjalankan test spesifik
-python -m unittest tests.test_queue #contoh jika ingin menjalankan test_queue.py
+#contoh jika ingin menjalankan test_registration.py
+python -m unittest tests.test_registration
+```
+## Cara Menjalankan Performance Profiling
+```bash
+python profile_runner.py
+```
+## Cara Menampilkan Coverage Unittest
+```bash
+# Untuk report CLI
+coverage report
+
+# Dalam bentuk html
+coverage html
+.\htmlcov\index.html
+```
