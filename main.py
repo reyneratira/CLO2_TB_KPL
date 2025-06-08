@@ -10,7 +10,10 @@ def main() -> None:
         choice: str = input("Pilih menu (1-5): ").strip()
 
         if choice == '1':
-            app.handle_add_customer()
+            try:
+                app.handle_add_customer()
+            except ValueError as e:
+                print_error(e)
             
         elif choice == '2':
             queue: list[dict[str, str]] = app.get_queue()
