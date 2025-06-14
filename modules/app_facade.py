@@ -6,6 +6,7 @@ from modules.registration import create_valid_customer_data, services_code_valid
 from modules.simulator import ServiceSimulator, NormalService, FastService
 
 class AppFacade:
+    @staticmethod
     def show_menu() -> None:
         print("\n===== SIMULASI ANTRIAN LAYANAN =====")
         print("1. Tambah Pelanggan ke Antrian")
@@ -58,12 +59,15 @@ class AppFacade:
 
     # Serve the next customer in the queue
     def serve_next_customer(self) -> None:
-        if self.qm.is_empty():
-            raise IndexError("Antrian kosong")
-        customer: Dict[str, str] = self.qm.get_next_customer()
-        service_name: str = self.qm.get_service_name(customer['service_code'])
-        duration: int = self.qm.get_service_time(customer['service_code'])
-        self.simulator.simulate_service(customer, service_name, duration)
+        try:
+            if self.qm.is_empty():
+                raise IndexError("Antrian kosong")
+            customer: Dict[str, str] = self.qm.get_next_customer()
+            service_name: str = self.qm.get_service_name(customer['service_code'])
+            duration: int = self.qm.get_service_time(customer['service_code'])
+            self.simulator.simulate_service(customer, service_name, duration)
+        except (IndexError, KeyError, ValueError) as e:
+            print_error(e)
 
     # Set the simulation mode (normal or fast)
     def set_simulation_mode(self, mode: str = 'normal') -> None:
