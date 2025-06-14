@@ -6,6 +6,10 @@ from modules.registration import create_valid_customer_data, services_code_valid
 from modules.simulator import ServiceSimulator, NormalService, FastService
 
 class AppFacade:
+
+    MAX_NAME_LENGTH = 50
+    MAX_SERVICE_CODE_LENGTH = 5
+
     @staticmethod
     def show_menu() -> None:
         print("\n===== SIMULASI ANTRIAN LAYANAN =====")
@@ -30,12 +34,16 @@ class AppFacade:
         name: str = input("Masukkan nama pelanggan: ").strip()
         if not name:
             raise ValueError("Nama tidak boleh kosong")
+        if len(name) > self.MAX_NAME_LENGTH:
+            raise ValueError(f"Nama tidak boleh lebih dari {self.MAX_NAME_LENGTH} karakter")
 
         print("Kode layanan tersedia:")
         for code, data in self.list_services().items():
             print(f"{code}: {data['name']} (Estimasi waktu: {data['duration']} menit)")
         
         services_code: str = input("Masukkan kode layanan (misal: L01): ").strip().upper()
+        if len(services_code) > self.MAX_SERVICE_CODE_LENGTH:
+            raise ValueError(f"Kode layanan tidak boleh lebih dari {self.MAX_SERVICE_CODE_LENGTH} karakter")
     
         try:
             # Validate data input using the registration module
@@ -71,9 +79,12 @@ class AppFacade:
 
     # Set the simulation mode (normal or fast)
     def set_simulation_mode(self, mode: str = 'normal') -> None:
-        if mode == 'normal':
-            self.simulator.set_strategy(NormalService())
-        elif mode == 'fast':
-            self.simulator.set_strategy(FastService())
-        else:
-            raise ValueError("Mode tidak dikenal")
+        try:
+            if mode == 'normal':
+                self.simulator.set_strategy(NormalService())
+            elif mode == 'fast':
+                self.simulator.set_strategy(FastService())
+            else:
+                raise ValueError("Mode tidak dikenal")
+        except ValueError as e:
+            print_error(e)
